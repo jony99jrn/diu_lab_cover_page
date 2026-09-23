@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIU Lab Report Cover Page Generator | Tools By JRN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <div id="formScreen" class="screen-container">
+    <div class="form-wrapper">
+
+      <div class="form-header">
+        <span class="eyebrow">Tools By JRN</span>
+        <h2>DIU Lab Report Cover Page Generator</h2>
+        <p class="subtitle">Fill in the lab report details below to instantly generate a formal DIU cover page.</p>
+      </div>
+
+      <div class="form-sections">
+
+        <!-- SECTION 1: REPORT INFORMATION -->
+        <div class="form-card-section">
+          <div class="section-header">
+            <span class="section-icon">🧪</span>
+            <h3>Report Information</h3>
+          </div>
+          <div class="form-grid">
+            <div class="input-group">
+              <label for="experimentNo">Experiment No</label>
+              <input type="text" id="experimentNo" placeholder="e.g. 01">
+            </div>
+
+            <div class="input-group">
+              <label for="experimentName">Experiment Name</label>
+              <input type="text" id="experimentName" placeholder="e.g. PPS">
+            </div>
+
+            <div class="input-group">
+              <label for="courseCode">Course Code</label>
+              <input type="text" id="courseCode" placeholder="e.g. CSE 114">
+            </div>
+
+            <div class="input-group">
+              <label for="courseTitle">Course Title</label>
+              <input type="text" id="courseTitle" placeholder="e.g. Programming and Problem Solving">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: SUBMITTED TO -->
+        <div class="form-card-section">
+          <div class="section-header">
+            <span class="section-icon">👨‍🏫</span>
+            <h3>Submitted To</h3>
+          </div>
+          <div class="form-grid">
+            <div class="input-group">
+              <label for="teacherName">Teacher Name</label>
+              <input type="text" id="teacherName" placeholder="e.g. Khandoker Nosiba Arifin">
+            </div>
+
+            <div class="input-group">
+              <label for="teacherDesig">Designation</label>
+              <input type="text" id="teacherDesig" placeholder="e.g. Lecturer">
+            </div>
+
+            <div class="input-group full-width">
+              <label for="teacherDept">Department</label>
+              <input type="text" id="teacherDept" placeholder="e.g. Computer Science and Engineering">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: SUBMITTED BY -->
+        <div class="form-card-section">
+          <div class="section-header">
+            <span class="section-icon">🎓</span>
+            <h3>Submitted By</h3>
+          </div>
+          <div class="form-grid">
+            <div class="input-group">
+              <label for="studentName">Student Name</label>
+              <input type="text" id="studentName" placeholder="e.g. Jony Roy">
+            </div>
+
+            <div class="input-group">
+              <label for="studentId">Student ID</label>
+              <input type="text" id="studentId" placeholder="e.g. 262-15-952">
+            </div>
+
+            <div class="input-group">
+              <label for="section">Section</label>
+              <input type="text" id="section" placeholder="e.g. 72_S">
+            </div>
+
+            <div class="input-group">
+              <label for="semester">Semester</label>
+              <input type="text" id="semester" placeholder="e.g. Summer 2026">
+            </div>
+
+            <div class="input-group full-width">
+              <label for="studentDept">Department</label>
+              <input type="text" id="studentDept" placeholder="e.g. Computer Science and Engineering">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: SUBMISSION DATE -->
+        <div class="form-card-section">
+          <div class="section-header">
+            <span class="section-icon">📅</span>
+            <h3>Submission Date</h3>
+          </div>
+          <div class="form-grid">
+            <div class="input-group full-width">
+              <label for="subDate">Date of Submission</label>
+              <input type="date" id="subDate">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button id="generateBtn" class="primary-btn large-submit-btn">Generate Cover Page →</button>
+    </div>
+  </div>
+
+  <div id="previewScreen" class="screen-container hidden">
+
+    <div id="coverPage">
+      <div id="pageBorder">
+
+        <img src="Center.svg" alt="DIU Watermark" class="watermark-bg">
+
+        <div class="header-logo">
+          <img src="Top.svg" alt="Daffodil International University" class="top-logo-img">
+        </div>
+
+        <div class="report-header">LAB REPORT</div>
+
+        <div class="course-info">
+          <p><strong class="label-title">Experiment No:</strong> <span id="prevExperimentNo">01</span></p>
+          <p><strong class="label-title">Experiment Name:</strong> <span id="prevExperimentName">PPS</span></p>
+          <p><strong class="label-title">Course Code:</strong> <span id="prevCourseCode">CSE 114</span></p>
+          <p><strong class="label-title">Course Title:</strong> <span id="prevCourseTitle">Programming and Problem Solving</span></p>
+        </div>
+
+        <div class="submission-block">
+          <h4 class="sub-heading">Submitted To</h4>
+          <p><strong class="lbl">Name:</strong> <span id="prevTeacherName">Khandoker Nosiba Arifin</span></p>
+          <p><strong class="lbl">Designation:</strong> <span id="prevTeacherDesig">Lecturer</span></p>
+          <p><strong class="lbl">Department of</strong> <span id="prevTeacherDept">CSE</span></p>
+          <p><strong>Daffodil International University</strong></p>
+        </div>
+
+        <div class="submission-block">
+          <h4 class="sub-heading">Submitted By</h4>
+          <p><strong class="lbl">Name:</strong> <span id="prevStudentName">Jony Roy</span></p>
+          <p><strong class="lbl">ID:</strong> <span id="prevStudentId">262-15-952</span></p>
+          <p><strong class="lbl">Section:</strong> <span id="prevSection">72_S</span></p>
+          <p><strong class="lbl">Semester:</strong> <span id="prevSemester">Summer 2026</span></p>
+          <p><strong class="lbl">Department of</strong> <span id="prevStudentDept">CSE</span></p>
+          <p><strong>Daffodil International University</strong></p>
+        </div>
+
+        <div class="date-pill-wrapper">
+          <div class="date-pill">
+            <strong>Date of Submission:</strong> <span id="prevSubDate">25/09/2026</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="action-bar bottom-action-bar">
+      <button id="editBtn" class="secondary-btn action-btn-large">← Edit Details</button>
+      <button id="downloadImgBtn" class="secondary-btn action-btn-large">Download Image 🖼️</button>
+      <button id="downloadBtn" class="primary-btn action-btn-large">Download PDF 📥</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
