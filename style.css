@@ -296,9 +296,8 @@ body {
 }
 
 .label-title {
-  display: inline-block;
-  min-width: 155px;
   font-weight: bold;
+  margin-right: 6px;
 }
 
 .submission-block {
